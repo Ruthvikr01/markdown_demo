@@ -1,17 +1,16 @@
-
 services:
   db:
     image: postgres:16
     container_name: markdown_demo_db
     environment:
-      POSTGRES_DB: operations_krpe
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: LbuDHzi1Jx0Sg8KjQlZEYtuJvaR72gts
+      POSTGRES_DB: operations_analytics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
-      # Initializes the database schema exactly once on first container startup.
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
       - pgdata:/var/lib/postgresql/data
 
   backend:
@@ -20,28 +19,15 @@ services:
     container_name: markdown_demo_backend
     environment:
       PORT: 4000
-      DB_HOST: dpg-d68db0kr85hc73cqv490-a.oregon-postgres.render.com
+      DB_HOST: db
       DB_PORT: 5432
-      DB_NAME: operations_krpe
-      DB_USER: admin
-      DB_PASSWORD: LbuDHzi1Jx0Sg8KjQlZEYtuJvaR72gts
-      CORS_ORIGIN: http://localhost:5173
+      DB_NAME: operations_analytics
+      DB_USER: postgres
+      DB_PASSWORD: postgres
     ports:
       - "4000:4000"
     depends_on:
       - db
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: markdown_demo_frontend
-    environment:
-      VITE_API_BASE_URL: http://localhost:4000/api
-    ports:
-      - "5173:5173"
-    depends_on:
-      - backend
-
 volumes:
   pgdata:
-
