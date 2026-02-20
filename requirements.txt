@@ -1,0 +1,48 @@
+# Operations Analytics Dashboard - Project Requirements
+# Note: This project is a Node.js + React application (not a Python/pip project).
+# Dependencies are installed via npm in backend/ and frontend/.
+
+# =========================
+# System / Runtime
+# =========================
+Node.js >= 22
+npm >= 10
+PostgreSQL >= 16
+Docker Desktop (recommended for local orchestration)
+Docker Compose v2
+
+# =========================
+# Backend npm dependencies
+# Source: backend/package.json
+# Install with: cd backend && npm install
+# =========================
+cors@^2.8.5
+dotenv@^16.4.5
+express@^4.21.2
+helmet@^8.0.0
+pg@^8.13.1
+
+# =========================
+# Frontend npm dependencies
+# Source: frontend/package.json
+# Install with: cd frontend && npm install
+# =========================
+react@^18.3.1
+react-dom@^18.3.1
+@vitejs/plugin-react@^4.3.4
+vite@^5.4.11
+
+# =========================
+# Environment variables required
+# =========================
+# backend/.env:
+#   PORT
+#   DB_HOST
+#   DB_PORT
+#   DB_NAME
+#   DB_USER
+#   DB_PASSWORD
+#   CORS_ORIGIN
+#
+# frontend/.env:
+#   VITE_API_BASE_URL
