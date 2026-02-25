@@ -20,9 +20,9 @@ export default [
       /*
       ========== STYLE / FORMAT (like ruff format) ==========
       */
-      "quotes": ["error", "double"],
-      "semi": ["error", "always"],
-      "indent": ["error", 2],
+      quotes: ["error", "double"],
+      semi: ["error", "always"],
+      indent: ["error", 2],
       "comma-dangle": ["error", "always-multiline"],
 
       /*
